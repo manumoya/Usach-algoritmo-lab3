@@ -66,6 +66,7 @@ void pop(Pila *pila) {
 }
 
 /* Imprimir cola */
+/*
 void print_pila(Pila *pila, int valor_ruta_guardada){
 	Nodo *auxiliar;
 	auxiliar = pila->inicio;
@@ -85,12 +86,10 @@ void print_pila(Pila *pila, int valor_ruta_guardada){
   }
   printf("costo total: %d\n", costo_total);
 
-  /*  
-  printf("costo_total: %i", costo_total);
-  printf(" valor_ruta_guardada: %i\n", valor_ruta_guardada);
-  */
-
-  if (costo_total < valor_ruta_guardada  || valor_ruta_guardada==0 ){
+  //printf("costo_total: %i", costo_total);
+  //printf(" valor_ruta_guardada: %i\n", valor_ruta_guardada);
+  
+if (costo_total < valor_ruta_guardada  || valor_ruta_guardada==0 ){
        
     abrir_archivo_resultado();
     
@@ -114,7 +113,52 @@ void print_pila(Pila *pila, int valor_ruta_guardada){
   }
   
 }
+*/
 
+
+
+/* Imprimir pila */
+void print_pila(Pila *pila){
+  Nodo *auxiliar;
+  auxiliar = pila->inicio;
+  
+  if (auxiliar==NULL){
+    printf( "\nLa lista está vacía!!\n" );
+  }else{
+    printf("\nMostrando pila completa:\n");
+  }  
+  while (auxiliar!=NULL) {
+    printf("nombre: %s", auxiliar->nombre);
+    printf(" costo: %d", auxiliar->costo);
+    printf("\n");
+    auxiliar = auxiliar->siguiente;
+  }
+  //printf("\n");
+}
+
+/* ver si existe nodo */
+int existe_ciclo(Pila *pila, char nodo[]){
+  Nodo *auxiliar;
+  auxiliar = pila->inicio;
+  //printf("\nMostrando pila completa:\n");
+  if (auxiliar==NULL) printf( "\nLa lista está vacía!!\n" );
+  int validacion=0;
+  int cont_pila=0;
+  while (auxiliar!=NULL && validacion==0) {
+    
+    //if (auxiliar->nombre[0]==nodo[0] && cont_pila>1){
+    if (auxiliar->nombre[0]==nodo[0]){
+      validacion=1;
+      printf("nombre: %s \n", auxiliar->nombre);
+      printf(" costo: %d \n", auxiliar->costo);
+      printf(" nodo inex: %c", nodo[0]);
+    }
+    auxiliar = auxiliar->siguiente;
+    cont_pila++;
+  }
+  //printf("\n");
+  return (validacion);
+}
 
 
 

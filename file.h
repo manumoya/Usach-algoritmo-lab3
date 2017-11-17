@@ -227,6 +227,7 @@ void guarda_ruta_mejor(char info[], int valor){
 
 }
 
+/*
 int lee_resultado(){
 	char linea[100];
 	
@@ -262,12 +263,10 @@ int lee_resultado(){
 
 	return resultado;
 
+}
+*/	
 
-
-
-}	
-
-
+/*
 void mostrar_mejor_ruta(){
 	char linea[100]=" ";
 
@@ -294,3 +293,4 @@ void mostrar_mejor_ruta(){
 	}
 	cerrar_archivo_resultado_lectura();
 }
+*/

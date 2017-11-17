@@ -105,8 +105,11 @@ void agregar_adyacencia(char origen[], char destino[], int costo){
   printf("\n"); 
   */
 
-  /*  no puede ir al nodo origen  por lo que esta adyacencia no es valida*/
-  if (pos_destino != pos_primer_nodo){
+
+  /* restricción 1: no puede ir al nodo origen  por lo que esta adyacencia no es valida
+     restricción 2: no puede ir al mismo nodo
+  */
+  if (pos_destino != pos_primer_nodo && origen[0]!=destino[0]){
     matriz_grafo_din[pos_origen][pos_destino]=costo;  
   }
 

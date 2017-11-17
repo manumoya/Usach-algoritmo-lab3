@@ -22,7 +22,7 @@ void imprimir_rutas(int arrRutas[]){
 
 
 
-void backtrack_rutas(int posNodoIni, Pila *pila){
+void goloso_rutas(int posNodoIni, Pila *pila){
 
   int largo_rutas = get_largo_matriz();
   int *nuevas_rutas;
@@ -31,34 +31,73 @@ void backtrack_rutas(int posNodoIni, Pila *pila){
   /* guarda todas las adyacencias del nodo*/
   resetear_rutas(nuevas_rutas);
   int cont_ruta=0;
+  int menor_valor=0;
+  int menor_posNodo=0;
   for (int i=1; i<largo_matriz; i++){
     int valor = matriz_grafo_din[posNodoIni][i];
+
     if (valor != 0){
-      nuevas_rutas[cont_ruta]=i;
-      cont_ruta++;
+      char nom_nodo = matriz_grafo_din[0][i];
+      //char nom_nodo_ciclo = matriz_grafo_din[0][posNodoIni];
+      int tiene_ciclo = existe_ciclo(pila, &nom_nodo);
+
+      print_pila(pila);
+
+      
+      printf("Nodo %c \n",  nom_nodo); 
+      printf("Valor: %i \n", valor); 
+      printf("menor valor: %i \n", menor_valor); 
+      //printf("nom_nodo_ciclo ciclo: %c \n", nom_nodo_ciclo);
+      printf("tiene ciclo: %i \n\n", tiene_ciclo); 
+
+
+      if (tiene_ciclo == 0){
+        if (menor_valor == 0 || menor_valor > valor){
+
+      
+          menor_valor=valor;
+          menor_posNodo=i;
+          cont_ruta++;
+        }
+      }
+      
     }
   }
 
+
+
+  
 
 
   if (cont_ruta==0){ // no tien adyacencia
 
     printf("\nCalcular ruta y costo \n"); 
 
-    int valor_ruta_guardada = lee_resultado();
-    
-    /*
-    printf("valor ruta guardada %d", valor_ruta_guardada); 
-    printf("\n");
-    */
-
-    print_pila(pila, valor_ruta_guardada);
-    pop(pila);
+    //int valor_ruta_guardada = lee_resultado();
+    //print_pila(pila, valor_ruta_guardada);
+    //pop(pila);
     
   }else{
 
+    char nombre_nodo = matriz_grafo_din[0][menor_posNodo];
+
+    /*
+    printf("\nSeguir \n"); 
+    printf("Pos Menor Nodo: %i \n", menor_posNodo); 
+    printf("Valor Menor Nodo: %i \n", menor_valor); 
+    printf("Nodo Menor %c \n",  nombre_nodo); 
+    */
+
+     
+
+     push(pila, &nombre_nodo, menor_valor);
+     goloso_rutas(menor_posNodo, pila);
+
+    /*
     for (int i=0; i<largo_matriz; i++){
       if (nuevas_rutas[i]!=0){
+
+
         char nombre_nodo = matriz_grafo_din[nuevas_rutas[i]][0];
         int costo_nodo =matriz_grafo_din[posNodoIni][nuevas_rutas[i]];
 
@@ -66,14 +105,12 @@ void backtrack_rutas(int posNodoIni, Pila *pila){
         if (&nombre_nodo != pila->inicio->nombre){
           
           push(pila, &nombre_nodo, costo_nodo);
-          backtrack_rutas(nuevas_rutas[i], pila);
+          goloso_rutas(nuevas_rutas[i], pila);
         
-        }/*else{
-          printf("q pasa acá??? \n"); 
-        }*/
+        }
       }
-    }
-    pop(pila);
+    }*/
+    //pop(pila);
   }
 
 }
@@ -93,9 +130,9 @@ int main() {
   limpiar_archivo_resultado();  
 
   push(pila, &primer_nodo[0], 0);
-  backtrack_rutas( posicion_nodo( &primer_nodo[0] ), pila);
+  goloso_rutas( posicion_nodo( &primer_nodo[0] ), pila);
 
-  mostrar_mejor_ruta();
+  //mostrar_mejor_ruta();
 
   /*
   int calculo = (int) strtol("155533333", (char **)NULL, 10);
