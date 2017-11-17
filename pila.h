@@ -149,9 +149,11 @@ int existe_ciclo(Pila *pila, char nodo[]){
     //if (auxiliar->nombre[0]==nodo[0] && cont_pila>1){
     if (auxiliar->nombre[0]==nodo[0]){
       validacion=1;
+      /*
       printf("nombre: %s \n", auxiliar->nombre);
       printf(" costo: %d \n", auxiliar->costo);
       printf(" nodo inex: %c", nodo[0]);
+      */
     }
     auxiliar = auxiliar->siguiente;
     cont_pila++;

@@ -38,18 +38,14 @@ void goloso_rutas(int posNodoIni, Pila *pila){
 
     if (valor != 0){
       char nom_nodo = matriz_grafo_din[0][i];
-      //char nom_nodo_ciclo = matriz_grafo_din[0][posNodoIni];
       int tiene_ciclo = existe_ciclo(pila, &nom_nodo);
 
-      print_pila(pila);
-
-      
+      /*
       printf("Nodo %c \n",  nom_nodo); 
       printf("Valor: %i \n", valor); 
       printf("menor valor: %i \n", menor_valor); 
-      //printf("nom_nodo_ciclo ciclo: %c \n", nom_nodo_ciclo);
       printf("tiene ciclo: %i \n\n", tiene_ciclo); 
-
+      */
 
       if (tiene_ciclo == 0){
         if (menor_valor == 0 || menor_valor > valor){
@@ -72,6 +68,7 @@ void goloso_rutas(int posNodoIni, Pila *pila){
   if (cont_ruta==0){ // no tien adyacencia
 
     printf("\nCalcular ruta y costo \n"); 
+    print_pila(pila);
 
     //int valor_ruta_guardada = lee_resultado();
     //print_pila(pila, valor_ruta_guardada);
