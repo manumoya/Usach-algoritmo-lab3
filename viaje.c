@@ -69,45 +69,15 @@ void goloso_rutas(int posNodoIni, Pila *pila){
 
     printf("\nCalcular ruta y costo \n"); 
     print_pila(pila);
-
-    //int valor_ruta_guardada = lee_resultado();
-    //print_pila(pila, valor_ruta_guardada);
-    //pop(pila);
     
   }else{
 
     char nombre_nodo = matriz_grafo_din[0][menor_posNodo];
 
-    /*
-    printf("\nSeguir \n"); 
-    printf("Pos Menor Nodo: %i \n", menor_posNodo); 
-    printf("Valor Menor Nodo: %i \n", menor_valor); 
-    printf("Nodo Menor %c \n",  nombre_nodo); 
-    */
+    push(pila, &nombre_nodo, menor_valor);
+    goloso_rutas(menor_posNodo, pila);
 
-     
-
-     push(pila, &nombre_nodo, menor_valor);
-     goloso_rutas(menor_posNodo, pila);
-
-    /*
-    for (int i=0; i<largo_matriz; i++){
-      if (nuevas_rutas[i]!=0){
-
-
-        char nombre_nodo = matriz_grafo_din[nuevas_rutas[i]][0];
-        int costo_nodo =matriz_grafo_din[posNodoIni][nuevas_rutas[i]];
-
-
-        if (&nombre_nodo != pila->inicio->nombre){
-          
-          push(pila, &nombre_nodo, costo_nodo);
-          goloso_rutas(nuevas_rutas[i], pila);
-        
-        }
-      }
-    }*/
-    //pop(pila);
+   
   }
 
 }
@@ -129,11 +99,5 @@ int main() {
   push(pila, &primer_nodo[0], 0);
   goloso_rutas( posicion_nodo( &primer_nodo[0] ), pila);
 
-  //mostrar_mejor_ruta();
-
-  /*
-  int calculo = (int) strtol("155533333", (char **)NULL, 10);
-  printf("calculo %i\n", calculo);
-  */
 
 }
