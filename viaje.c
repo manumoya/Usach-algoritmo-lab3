@@ -49,8 +49,6 @@ void goloso_rutas(int posNodoIni, Pila *pila){
 
       if (tiene_ciclo == 0){
         if (menor_valor == 0 || menor_valor > valor){
-
-      
           menor_valor=valor;
           menor_posNodo=i;
           cont_ruta++;

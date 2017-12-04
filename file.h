@@ -121,13 +121,40 @@ char get_val_otras_linea(char linea[], char tipo_valor){
     	return (linea[2]);
     }
     // C: Costo
+    /*
     if (tipo_valor=='C'){
         //printf( "Cos : \n");
 
-    	//printf("largo linea %d\n", strlen(linea) );
-    	return (linea[4]);
-    }
+    	printf("largo linea %lu \n", strlen(linea) );
+    	char valor[20]="";
+    	//char caracter[1];
+    	for (int i=4; i<=strlen(linea); i++){
+   			//caracter[0] = linea[i];
+    		strcat(valor, &linea[i]);
+    	}
+    	printf("valor:  %s \n", valor );
+
+    	//return (linea[4]);
+    	return (valor);
+    }*/
     return(0);
+}
+
+int get_val_costo(char linea[]){
+	
+	//printf("largo linea %lu \n", strlen(linea) );
+    char valor[20]="";
+    //char caracter[1];
+    for (int i=4; i<=strlen(linea); i++){
+   		//caracter[0] = linea[i];
+    	strcat(valor, &linea[i]);
+    }
+
+    int valor_final =atoi(valor);
+    
+    printf("valor= %s, int valor= %i", valor, valor_final );
+
+	return ( valor_final );
 }
 
 int convertir_numero(char decena[], char unidad[]){
@@ -164,7 +191,16 @@ void carga_matriz(int nro_linea, char linea[]){
 		procesar_grafo(nroNodos+1); 
 	}else{
 		// carga rutas
-		int costo = (int)get_val_otras_linea(linea, 'C') -48;
+		//int costo = (int)get_val_otras_linea(linea, 'C') -48;
+		
+		//char valor_linea[1];
+		//valor_linea[0] = get_val_otras_linea(linea, 'C');
+		//int costo = atoi(valor_linea);
+		int costo = get_val_costo (linea);
+
+		//printf("valor costo final:  %i \n", costo);	
+
+
 		char origen[1], destino[1];
 		origen[0]  = get_val_otras_linea(linea, 'O');
 		destino[0] = get_val_otras_linea(linea, 'D');

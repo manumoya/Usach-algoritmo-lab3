@@ -2,7 +2,7 @@
 int largo_matriz;
 //char matriz_grafo[5][5];
 char primer_nodo[1];
-char **matriz_grafo_din;
+int **matriz_grafo_din;
 
 int get_largo_matriz(){
   return largo_matriz;
@@ -33,10 +33,10 @@ void set_matriz_din(int largo){
     return;
   }
 
-  matriz_grafo_din = (char**)malloc(sizeof(int*)*largo_matriz);
+  matriz_grafo_din = (int**)malloc(sizeof(int*)*largo_matriz);
 
   for (int i=0; i<largo_matriz; i++){
-      matriz_grafo_din[i]=(char*)malloc(sizeof(int)*largo_matriz);
+      matriz_grafo_din[i]=(int*)malloc(sizeof(int)*largo_matriz);
   }
 
   set_valores_matriz();
@@ -69,7 +69,7 @@ void imprimir_grafo(){
       if (j==0 || i==0){
         printf("%c ", matriz_grafo_din[i][j]);
       }else{
-        printf("%d ", matriz_grafo_din[i][j]);
+        printf("%i ", matriz_grafo_din[i][j]);
       }  
     }
     printf("\n");   
