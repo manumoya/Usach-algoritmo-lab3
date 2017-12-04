@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
 #include "matriz.h"
 #include "file.h"
 #include "pila.h"
@@ -19,8 +18,6 @@ void imprimir_rutas(int arrRutas[]){
     printf("\n"); 
   }
 }
-
-
 
 void goloso_rutas(int posNodoIni, Pila *pila){
 
@@ -40,13 +37,6 @@ void goloso_rutas(int posNodoIni, Pila *pila){
       char nom_nodo = matriz_grafo_din[0][i];
       int tiene_ciclo = existe_ciclo(pila, &nom_nodo);
 
-      /*
-      printf("Nodo %c \n",  nom_nodo); 
-      printf("Valor: %i \n", valor); 
-      printf("menor valor: %i \n", menor_valor); 
-      printf("tiene ciclo: %i \n\n", tiene_ciclo); 
-      */
-
       if (tiene_ciclo == 0){
         if (menor_valor == 0 || menor_valor > valor){
           menor_valor=valor;
@@ -58,28 +48,21 @@ void goloso_rutas(int posNodoIni, Pila *pila){
     }
   }
 
-
-
-  
-
-
-  if (cont_ruta==0){ // no tien adyacencia
+  if (cont_ruta==0){ // si no tiene adyacencia
 
     printf("\nCalcular ruta y costo \n"); 
     print_pila(pila);
     
-  }else{
+  }else{ // seguir buscando nodo 
 
     char nombre_nodo = matriz_grafo_din[0][menor_posNodo];
 
     push(pila, &nombre_nodo, menor_valor);
     goloso_rutas(menor_posNodo, pila);
 
-   
   }
 
 }
-
 
 int main() {
 

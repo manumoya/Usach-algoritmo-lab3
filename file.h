@@ -70,7 +70,6 @@ void limpiar_archivo_resultado(){
 int len_linea(char cadena[]){
     int j=0;
     while (cadena[j] != '\0'){
-    	//printf( "char line : %c \n", cadena[j] );
     	j++;
     } 
     return j;
@@ -109,7 +108,6 @@ char get_val_prim_linea(char linea[], char ini_or_nronodo){
 }
 
 char get_val_otras_linea(char linea[], char tipo_valor){
-	
 	// O: origen
 	if ( tipo_valor=='O'){
     	//printf( "Orig : \n");
@@ -120,54 +118,29 @@ char get_val_otras_linea(char linea[], char tipo_valor){
         //printf( "Dest : \n");
     	return (linea[2]);
     }
-    // C: Costo
-    /*
-    if (tipo_valor=='C'){
-        //printf( "Cos : \n");
 
-    	printf("largo linea %lu \n", strlen(linea) );
-    	char valor[20]="";
-    	//char caracter[1];
-    	for (int i=4; i<=strlen(linea); i++){
-   			//caracter[0] = linea[i];
-    		strcat(valor, &linea[i]);
-    	}
-    	printf("valor:  %s \n", valor );
-
-    	//return (linea[4]);
-    	return (valor);
-    }*/
     return(0);
 }
 
 int get_val_costo(char linea[]){
-	
-	//printf("largo linea %lu \n", strlen(linea) );
-    char valor[20]="";
-    //char caracter[1];
+	char valor[20]="";
     for (int i=4; i<=strlen(linea); i++){
-   		//caracter[0] = linea[i];
     	strcat(valor, &linea[i]);
     }
 
     int valor_final =atoi(valor);
-    
-    //printf("valor= %s, int valor= %i", valor, valor_final );
-
-	return ( valor_final );
+ 	return ( valor_final );
 }
 
 int convertir_numero(char decena[], char unidad[]){
 	int unid= (int) unidad[0] -48;
 	//int unid= (int) strtol(&unidad[0], (char **)NULL, 10);
 
-
 	if (decena[0]=='0'){
 		return unid;
 	}else{
 		int dece =(int) decena[0] -48;
 		//int dece =(int) strtol(&decena[0], (char **)NULL, 10);
-
 		return (dece*10+unid);
 	}
 	return(0);
@@ -182,38 +155,18 @@ void carga_matriz(int nro_linea, char linea[]){
 
 		primer_nodo[0] = get_val_prim_linea(linea, 'N');
 
-		/*
-		printf( "NRO : %d \n", nroNodos);
-		printf( "NOD : %c \n", get_val_prim_linea(linea, 'N'));
-		printf( "largo grafo : %d \n", nroNodos+1);
-		*/
 		set_matriz_din(nroNodos+1);
 		procesar_grafo(nroNodos+1); 
 	}else{
-		// carga rutas
-		//int costo = (int)get_val_otras_linea(linea, 'C') -48;
-		
-		//char valor_linea[1];
-		//valor_linea[0] = get_val_otras_linea(linea, 'C');
-		//int costo = atoi(valor_linea);
 		int costo = get_val_costo (linea);
-
-		//printf("valor costo final:  %i \n", costo);	
-
 
 		char origen[1], destino[1];
 		origen[0]  = get_val_otras_linea(linea, 'O');
 		destino[0] = get_val_otras_linea(linea, 'D');
 
 		agregar_adyacencia(origen, destino, costo);
-
-		/*
-		printf( "Orig : %c \n", origen[0]);
-		printf( "Dest : %c \n", destino[0]);
-		printf( "Cos : %d \n", costo);	
-		*/
 	}
-	//printf("\n");	
+
 }
 
 void leer_archivo(){
@@ -222,28 +175,15 @@ void leer_archivo(){
 
 	while (!feof(itinerario)){
 		fgets(linea,sizeof(linea),itinerario);
-		
-		/*printf(" fila %d", nro_linea); 
-		printf("\n");
-		*/
 		carga_matriz(nro_linea, linea);
 
 		nro_linea++;
-		
-		//fprintf(stdout , "%s\n\n\n",linea);
 	}
 	imprimir_grafo();
 	printf("\n");
 }
 
 void guarda_ruta_mejor(char info[], int valor){
-
-	/*
-	printf("info %c", info[0]);
-	printf(" valor %i", valor);
-	printf("\n");
-	*/
-	
 
 	char linea2[10]="";
     strcat(linea2, &info[0]);
@@ -256,77 +196,8 @@ void guarda_ruta_mejor(char info[], int valor){
     strcat(linea2, "\n");
     
 
-    //printf("linea guardada %s\n", linea2);
-   
-
     fputs(linea2, arch_resultado);
 
 }
 
-/*
-int lee_resultado(){
-	char linea[100];
-	
-	abrir_archivo_resultado_lectura();
-	while (!feof(arch_resultado_lectura) ){
-		fgets(linea,sizeof(linea),arch_resultado_lectura);
 
-	}
-
-	int resultado;
-	int largo_linea = strlen(linea);
-	char numero[10]="";
-	//printf("largo linea %d\n", largo_linea );
-	if (largo_linea>4){
-		for (int i=2; i<=largo_linea-2; i++){
-			strcat(numero, &linea[i]);
-		}	
-		resultado= 	(int) strtol(numero, (char **)NULL, 10);
-	}else{
-
-		char total = linea[2];
-		cerrar_archivo_resultado_lectura();
-
-		resultado =  (int) total -48;
-	
-		if (resultado==-48){
-			resultado=0;
-		}
-	
-		//return resultado;
-
-	}
-
-	return resultado;
-
-}
-*/	
-
-/*
-void mostrar_mejor_ruta(){
-	char linea[100]=" ";
-
-	abrir_archivo_resultado_lectura();
-
-	printf("\n");
-	printf("La mejor ruta es: \n");
-
-	while (!feof(arch_resultado_lectura) ){
-		strcpy(linea," ");
-		fgets(linea,sizeof(linea),arch_resultado_lectura);
-
-		//char c = fgetc(arch_resultado_lectura);
-		if (linea[0] != ' '){
-			printf("fila %s", linea); 
-		}
-		//printf("\n");
-	
-		//carga_matriz(nro_linea, linea);
-
-		//nro_linea++;
-		
-		//fprintf(stdout , "%s\n\n\n",linea);
-	}
-	cerrar_archivo_resultado_lectura();
-}
-*/
