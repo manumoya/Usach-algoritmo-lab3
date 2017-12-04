@@ -136,6 +136,6 @@ void procesar_grafo(int largo){
       //printf("char graf: %c \n", arrGrafoOut[i] );
   }
   generar_grafo(arrGrafoOut);
-  imprimir_grafo();
+  //imprimir_grafo();
   printf("\n");
 }

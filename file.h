@@ -9,7 +9,7 @@ void abrir_archivo(){
 	if ( (itinerario = fopen(nombre_archivo, "r") ) == NULL){
     	printf("No se ha podido abrir el archivo %s.\n", nombre_archivo);
   	}else{
-  		printf("Archivo abierto %s.\n", nombre_archivo);
+  		//printf("Archivo abierto %s.\n", nombre_archivo);
   	}
 }
 
@@ -19,7 +19,7 @@ void cerrar_archivo(){
    
     }else{
     	fclose(itinerario);
-  		printf("Archivo cerrado %s.\n", nombre_archivo);
+  		//printf("Archivo cerrado %s.\n", nombre_archivo);
   	}
 }
 
