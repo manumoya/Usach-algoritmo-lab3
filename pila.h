@@ -61,7 +61,7 @@ void print_pila(Pila *pila){
   if (auxiliar==NULL){
     printf( "\nLa lista está vacía!!\n" );
   }else{
-    printf("\nMostrando pila completa:\n");
+    printf("\nMostrando ruta encontrada:\n");
   } 
   int costo_total=0; 
   while (auxiliar!=NULL) {
