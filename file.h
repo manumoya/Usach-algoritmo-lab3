@@ -152,7 +152,7 @@ int get_val_costo(char linea[]){
 
     int valor_final =atoi(valor);
     
-    printf("valor= %s, int valor= %i", valor, valor_final );
+    //printf("valor= %s, int valor= %i", valor, valor_final );
 
 	return ( valor_final );
 }

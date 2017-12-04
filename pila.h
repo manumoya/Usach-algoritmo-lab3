@@ -126,14 +126,16 @@ void print_pila(Pila *pila){
     printf( "\nLa lista está vacía!!\n" );
   }else{
     printf("\nMostrando pila completa:\n");
-  }  
+  } 
+  int costo_total=0; 
   while (auxiliar!=NULL) {
+    costo_total=costo_total + auxiliar->costo;
     printf("nombre: %s", auxiliar->nombre);
     printf(" costo: %d", auxiliar->costo);
     printf("\n");
     auxiliar = auxiliar->siguiente;
   }
-  //printf("\n");
+  printf("costo total: %d\n", costo_total);
 }
 
 /* ver si existe nodo */
